@@ -66,8 +66,10 @@ pipeline {
                   sh 'nvm --version'
                   echo '******************************'
             }
-            success { // success: Steps execute only if the Pipeline or stage completes successfully.
-                  echo 'showed version software installed'
+            post {
+                success { // success: Steps execute only if the Pipeline or stage completes successfully.
+                   echo 'showed version software installed'
+                }
             }
         }
 
