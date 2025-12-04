@@ -110,7 +110,7 @@ pipeline {
                 success { // success: Steps execute only if the Pipeline or stage completes successfully.
                     echo 'Build passed successfully!'
                 }
-            }
+            }            
         }
 
         // step 6
