@@ -67,7 +67,7 @@ pipeline {
                   echo '******************************'
             }
             post {
-                success { // success: Steps execute only if the Pipeline or stage completes successfully.
+                success {
                    echo 'showed version software installed'
                 }
             }
