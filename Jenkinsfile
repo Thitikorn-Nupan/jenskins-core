@@ -66,7 +66,9 @@ pipeline {
                   sh 'nvm --version'
                   echo '******************************'
             }
-
+            success { // success: Steps execute only if the Pipeline or stage completes successfully.
+                  echo 'showed version software installed'
+            }
         }
 
 
@@ -130,6 +132,9 @@ pipeline {
          failure {
              // Send failure notification
              echo 'Pipeline failed.'
+         }
+         changed {
+             echo 'Pipeline changes.'
          }
          cleanup {
              echo 'Pipeline cleanup successfully.'
