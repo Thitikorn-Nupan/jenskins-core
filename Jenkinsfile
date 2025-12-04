@@ -134,7 +134,7 @@ pipeline {
              echo 'Pipeline failed.'
          }
          changed {
-             echo 'Pipeline changes.'
+             echo 'Pipeline changed.'
          }
          cleanup {
              echo 'Pipeline cleanup successfully.'
