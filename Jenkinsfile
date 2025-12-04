@@ -130,8 +130,8 @@ pipeline {
              echo 'Pipeline failed.'
              // Send failure notification
          }
-         cleanup {
-             deleteDir() // Clean up the workspace
-         }
+//          cleanup {
+//             //  deleteDir() // Clean up the workspace
+//          }
    }
 }
