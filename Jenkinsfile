@@ -104,7 +104,6 @@ pipeline {
             }
         }
 
-        //  the post section allows the definition of actions to be executed after the main Pipeline or a specific stage completes.
         /*
         always: Steps within this block execute regardless of the Pipeline's or stage's final status (success, failure, unstable, aborted).
         success: Steps execute only if the Pipeline or stage completes successfully.
@@ -116,5 +115,23 @@ pipeline {
         regression: Steps execute if the current run's status is worse than the previous run's status (e.g., successful to unstable, unstable to failure).
         cleanup: This is a special condition within the global post section, primarily used for tasks like workspace cleanup, regardless of the build result.
         */
+        // The post section allows the definition of actions to be executed after the main Pipeline or a specific stage completes.
+        // The post section can be defined at both the global Pipeline level and within individual stage blocks, allowing for granular control over post-execution actions.
+        post {
+                always {
+                    echo 'Pipeline finished.'
+                }
+                success {
+                    echo 'Overall pipeline completed successfully.'
+                    // Send success notification
+                }
+                failure {
+                    echo 'Overall pipeline failed.'
+                    // Send failure notification
+                }
+                cleanup {
+                    deleteDir() // Clean up the workspace
+                }
+        }
     }
 }
