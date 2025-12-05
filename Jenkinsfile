@@ -14,7 +14,7 @@ pipeline {
             DOMAIN = 'thitikorn-nupan.com'
             PATH_APP_ECOMMERCE = 'http://www.thitikorn-nupan.com/app/ecommerce/'
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
-            PATH_PASSWORD_VPS = 'B:\\txt\\password_vps.txt'
+            PATH_PASSWORD_VPS = 'B:\\txts\\password_vps.txt'
     }
 
 
