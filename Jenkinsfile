@@ -50,20 +50,6 @@ pipeline {
         }
 
 
-        // step 1.3
-        stage('Before init check environment vars') {
-            steps {
-                script {
-                    // Read the content of the file
-                    def fileContent = readFile(file: 'B:/txt/password_vps.txt').trim()
-                    // Store the content in an environment variable
-                    env.PASSWORD_VPS = fileContent
-                    echo "Environment variable MY_ENV_VAR set to: ${env.PASSWORD_VPS}"
-                }
-            }
-        }
-
-
         // step 2
         stage('Before init write some groovy language') {
             steps {
