@@ -15,6 +15,7 @@ pipeline {
             PATH_APP_ECOMMERCE = 'http://www.thitikorn-nupan.com/app/ecommerce/'
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
             PATH_PASSWORD_VPS = 'B:\\txts\\password_vps.txt'
+            UBUNTU_CLEAR_DIR = '"rm -rf /var/www/thitikorn-nupan/app/testing/*"'
     }
 
 
@@ -141,7 +142,7 @@ pipeline {
         stage('Deploy') {
             steps{
                 echo 'Deploy'
-                sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 \\\\\"rm -rf /var/www/thitikorn-nupan/app/testing/*\\\\\""
+                sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
                 echo '******************************'
             }
         }
