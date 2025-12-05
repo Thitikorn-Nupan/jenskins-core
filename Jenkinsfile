@@ -16,7 +16,7 @@ pipeline {
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
             PATH_PASSWORD_VPS = 'B:\\txts\\password_vps.txt'
             UBUNTU_CLEAR_DIR = '"rm -rf /var/www/thitikorn-nupan/app/testing/*"'
-            WINDOWS_HOST_KEY_DIR = '"C:\\Users\\User\\.ssh\\known_hosts"'
+            WINDOWS_HOST_KEY_DIR = '"C:\\Users\\User\\.ssh\\id_rsa"'
     }
 
 
@@ -146,10 +146,11 @@ pipeline {
                 // Not working
                 // sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
                 // sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+                bat "pscp -i ${env.WINDOWS_HOST_KEY_DIR} -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 echo '******************************'
-                withCredentials([usernamePassword(credentialsId: 'ttknp_ssh', usernameVariable: 'ttknp_ssh', passwordVariable: '12345')]) {
-                    sh "pscp -pw ${env.PASSWORD_VPS} Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
-                }
+//                 withCredentials([usernamePassword(credentialsId: 'ttknp_ssh', usernameVariable: 'ttknp_ssh', passwordVariable: '12345')]) {
+//                     sh "pscp -pw ${env.PASSWORD_VPS} Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+//                 }
             }
         }
 
