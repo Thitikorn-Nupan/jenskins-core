@@ -13,10 +13,23 @@ pipeline {
             DOMAIN = 'thitikorn-nupan.com'
             PATH_APP_ECOMMERCE = 'http://www.thitikorn-nupan.com/app/ecommerce/'
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
+            PASSWORD_VPS = ''
     }
 
     // stages work as working flow it tells Pipeline what gonna do
     stages {
+        // step 0
+        stage('Before init get key from file') {
+            steps {
+                script {
+                    // Read the content of the file
+                    def fileContent = readFile(file: 'B:/txt/password_vps.txt').trim()
+                    // Store the content in an environment variable
+                    env.PASSWORD_VPS = fileContent
+                    echo "Environment variable MY_ENV_VAR set to: ${env.PASSWORD_VPS}"
+                }
+            }
+        }
 
         // step 1
         stage('Before init reads the environment') {
@@ -26,10 +39,26 @@ pipeline {
                 echo "DOMAIN_URI : ${env.DOMAIN}"
                 echo "PATH_APP_ECOMMERCE : ${env.PATH_APP_ECOMMERCE}"
                 echo "PATH_APP_REVIEWS_BOOK : ${env.PATH_APP_REVIEWS_BOOK}"
+                echo "PASSWORD_VPS : ${env.PASSWORD_VPS}"
                 echo '******************************'
             }
 
         }
+
+
+        // step 1.3
+        stage('Before init check environment vars') {
+            steps {
+                script {
+                    // Read the content of the file
+                    def fileContent = readFile(file: 'B:/txt/password_vps.txt').trim()
+                    // Store the content in an environment variable
+                    env.PASSWORD_VPS = fileContent
+                    echo "Environment variable MY_ENV_VAR set to: ${env.PASSWORD_VPS}"
+                }
+            }
+        }
+
 
         // step 2
         stage('Before init write some groovy language') {
