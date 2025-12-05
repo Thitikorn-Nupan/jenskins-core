@@ -144,34 +144,11 @@ pipeline {
             steps{
                 echo 'Deploy'
                 // sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
-                // sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+                bat "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 echo '******************************'
             }
         }
 
-        stage('Transfer File') {
-            steps {
-                // Archive the file on the Windows agent (optional, but good practice)
-                archiveArtifacts artifacts: 'Jenkinsfile', fingerprint: true
-
-                // Use the sshPublisher step to transfer the file
-                sshPublisher(
-                    publishers: [
-                        sshPublisherDesc(
-                            configName: 'root', // Name of your SSH server configuration in Jenkins
-                            transfers: [
-                                sshTransfer(
-                                    sourceFiles: 'Jenkinsfile',
-                                    // removePrefix: 'path/to/your/', // Optional: remove this prefix from the target path
-                                    remoteDirectory: '/var/www/thitikorn-nupan/app/testing/', // Destination on Linux agent
-                                    execCommand: 'ls -l' // Optional: command to execute after transfer
-                                )
-                            ]
-                        )
-                    ]
-                )
-            }
-        }
     }
     // The post section allows the definition of actions to be executed after the main Pipeline or a specific stage completes.
     // The post section can be defined at both the global Pipeline level and within individual stage blocks, allowing for granular control over post-execution actions.
