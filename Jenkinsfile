@@ -14,7 +14,7 @@ pipeline {
             DOMAIN = 'thitikorn-nupan.com'
             PATH_APP_ECOMMERCE = 'http://www.thitikorn-nupan.com/app/ecommerce/'
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
-            PATH_PASSWORD_VPS = 'B:\\txts\\password_vps.txt'
+            PATH_PASSWORD_VPS = 'B:\\txt\\password_vps.txt'
     }
 
 
@@ -32,7 +32,8 @@ pipeline {
                         env.PASSWORD_VPS = fileContent
                         echo "Dynamic environment variable as PASSWORD_VPS set to : ${env.PASSWORD_VPS}"
                     } else {
-                        echo "File did not exist!"
+                        // the error step is generally preferred in Jenkins Pipelines as it integrates more cleanly with Jenkins's build status and reporting mechanisms. The error step also avoids printing a stack trace by default, which can make logs cleaner.
+                        error("File did not exist! : ${env.PATH_PASSWORD_VPS}")
                     }
                 }
             }
