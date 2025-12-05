@@ -6,7 +6,9 @@ pipeline {
         any คือ ใช้ executor ใด ๆ ก็ได้
         docker คือ ใช้ docker executor มา run stages ทั้งหมดนี้
     */
-    agent any
+    agent {
+       label 'windows-agent'
+    }
 
     // declare env as var for using on stages { ... }
     environment {
