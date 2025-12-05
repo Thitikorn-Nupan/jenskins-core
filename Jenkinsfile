@@ -144,11 +144,21 @@ pipeline {
             steps{
                 echo 'Deploy'
                 // sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
-                sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+                // sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 echo '******************************'
             }
         }
 
+
+        // step 6
+        stage('Test SSH Connection') {
+            steps {
+                sshagent(credentials: ['ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDJ4xTNjRqNSyQSjrX0w2D4PW3wQ0vkK+r17qO4owQc1U4W9o97rrgZBblCGBrkA3nLTT4ZL6cN4L2MqSo/KOUQ=']) { // Replace 'your-ssh-credential-id'
+                    sh 'ssh -o StrictHostKeyChecking=no root@45.154.26.50 "echo SSH connection successful"' // Replace user and remote_host_ip
+                    sh 'ssh -v root@45.154.26.50' // Optional: for more verbose output
+                }
+            }
+        }
 
     }
     // The post section allows the definition of actions to be executed after the main Pipeline or a specific stage completes.
