@@ -141,7 +141,7 @@ pipeline {
         stage('Deploy') {
             steps{
                 echo 'Deploy'
-                sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 "rm -rf /var/www/thitikorn-nupan/app/testing/*""
+                sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 \"rm -rf /var/www/thitikorn-nupan/app/testing/*\""
                 echo '******************************'
             }
         }
