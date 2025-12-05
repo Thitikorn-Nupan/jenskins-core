@@ -153,7 +153,7 @@ pipeline {
         // step 6
         stage('Test SSH Connection') {
             steps {
-                sshagent(credentials: ['AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDJ4xTNjRqNSyQSjrX0w2D4PW3wQ0vkK+r17qO4owQc1U4W9o97rrgZBblCGBrkA3nLTT4ZL6cN4L2MqSo/KOUQ=']) { // Replace 'your-ssh-credential-id'
+                sshagent(credentials: ['45.154.26.50 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDJ4xTNjRqNSyQSjrX0w2D4PW3wQ0vkK+r17qO4owQc1U4W9o97rrgZBblCGBrkA3nLTT4ZL6cN4L2MqSo/KOUQ=']) { // Replace 'your-ssh-credential-id'
                     sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 }
             }
