@@ -59,46 +59,46 @@ pipeline {
 
 
         // step 2
-        stage('Before init write some groovy language') {
-            steps {
-                /*
-                    เราสามารถเขียน Pipeline Logic ที่ซับซ้อนด้วยภาษา Groovy ได้ โดยการใช้ script block
-                    โดยการ กำหนด script { ... } ไว้ใน steps { ... }
-                */
-                echo '******************************'
-                script {
-                      def numbers = [10, 20, 30, 40, 50];
-                      def sum = 0;
-                      for(int index = 0; index < numbers.size(); index++) {
-                         println("value of item : " + numbers[index] );
-                         sum += numbers[index]
-                      }
-                      println("sum of item : " + sum );
-                }
-                echo '******************************'
-            }
-
-        }
+        // stage('Before init write some groovy language') {
+        //     steps {
+        //         /*
+        //             เราสามารถเขียน Pipeline Logic ที่ซับซ้อนด้วยภาษา Groovy ได้ โดยการใช้ script block
+        //             โดยการ กำหนด script { ... } ไว้ใน steps { ... }
+        //         */
+        //         echo '******************************'
+        //         script {
+        //               def numbers = [10, 20, 30, 40, 50];
+        //               def sum = 0;
+        //               for(int index = 0; index < numbers.size(); index++) {
+        //                  println("value of item : " + numbers[index] );
+        //                  sum += numbers[index]
+        //               }
+        //               println("sum of item : " + sum );
+        //         }
+        //         echo '******************************'
+        //     }
+        //
+        // }
 
         // step 3
-        stage('Before init check software installed') {
-            steps {
-                  // Note , you do on local that meaning all software you version you have installed !!
-                  // sh เป็นคำสั่งที่ใช้ในการ run Linux Command เช่น
-                  echo '******************************'
-                  sh 'java -version'
-                  sh 'mvn -version'
-                  sh 'git --version'
-                  sh 'node --version'
-                  sh 'nvm --version'
-                  echo '******************************'
-            }
-            post {
-                success {
-                   echo 'showed version software installed'
-                }
-            }
-        }
+        // stage('Before init check software installed') {
+        //     steps {
+        //           // Note , you do on local that meaning all software you version you have installed !!
+        //           // sh เป็นคำสั่งที่ใช้ในการ run Linux Command เช่น
+        //           echo '******************************'
+        //           sh 'java -version'
+        //           sh 'mvn -version'
+        //           sh 'git --version'
+        //           sh 'node --version'
+        //           sh 'nvm --version'
+        //           echo '******************************'
+        //     }
+        //     post {
+        //         success {
+        //            echo 'showed version software installed'
+        //         }
+        //     }
+        // }
 
 
         // step 4
@@ -121,24 +121,24 @@ pipeline {
         }
 
         // step 5
-        stage('Build') {
-            steps {
-                echo '******************************'
-                sh 'pwd'
-                // Go to target dir
-                dir('jenkins_basic_env_linux_groovy') {
-                    sh "ls -l"
-                    sh "cat Jenkinsfile"
-                }
-                // Returns to the original working directory
-                sh 'pwd'
-            }
-            post {
-                success { // success: Steps execute only if the Pipeline or stage completes successfully.
-                    echo 'Build passed successfully!'
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         echo '******************************'
+        //         sh 'pwd'
+        //         // Go to target dir
+        //         dir('jenkins_basic_env_linux_groovy') {
+        //             sh "ls -l"
+        //             sh "cat Jenkinsfile"
+        //         }
+        //         // Returns to the original working directory
+        //         sh 'pwd'
+        //     }
+        //     post {
+        //         success { // success: Steps execute only if the Pipeline or stage completes successfully.
+        //             echo 'Build passed successfully!'
+        //         }
+        //     }
+        // }
 
         // step 6
         stage('Deploy') {
