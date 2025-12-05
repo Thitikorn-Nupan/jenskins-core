@@ -171,7 +171,7 @@ pipeline {
                     ]
                 )
             }
-
+        }
     }
     // The post section allows the definition of actions to be executed after the main Pipeline or a specific stage completes.
     // The post section can be defined at both the global Pipeline level and within individual stage blocks, allowing for granular control over post-execution actions.
