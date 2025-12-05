@@ -16,7 +16,7 @@ pipeline {
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
             PATH_PASSWORD_VPS = 'B:\\txts\\password_vps.txt'
             UBUNTU_CLEAR_DIR = '"rm -rf /var/www/thitikorn-nupan/app/testing/*"'
-            UBUNTU_CHECK_DIR = '"ls -a /var/www/thitikorn-nupan/app/testing/*"'
+            UBUNTU_CHECK_DIR = '"ls -a /var/www/thitikorn-nupan/app/testing"'
             WINDOWS_HOST_KEY_DIR = '"C:\\Users\\User\\.ssh\\id_rsa"'
     }
 
