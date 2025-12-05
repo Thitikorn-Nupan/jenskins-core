@@ -143,9 +143,9 @@ pipeline {
         stage('Deploy') {
             steps{
                 echo 'Deploy'
+                // Not working
                 // sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
-                bat "whoami"
-                sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+                // sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 echo '******************************'
             }
         }
