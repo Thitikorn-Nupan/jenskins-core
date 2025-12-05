@@ -24,12 +24,16 @@ pipeline {
         stage('Before init get key from file') {
             steps {
                 script {
-                    // Read the content of the file Keep this format you can't use / just use \\
-                    // def fileContent = readFile(file: 'B:\\txts\\password_vps.txt').trim()
-                    def fileContent = readFile(file: env.PATH_PASSWORD_VPS).trim()
-                    // Store the content in an environment variable (Note , should not declare first)
-                    env.PASSWORD_VPS = fileContent
-                    echo "Environment variable MY_ENV_VAR set to: ${env.PASSWORD_VPS}"
+                    if (fileExists(env.PATH_PASSWORD_VPS)) {
+                        // Read the content of the file Keep this format you can't use / just use \\
+                        // def fileContent = readFile(file: 'B:\\txts\\password_vps.txt').trim()
+                        def fileContent = readFile(file: env.PATH_PASSWORD_VPS).trim()
+                        // Store the content in an environment variable (Note , should not declare first)
+                        env.PASSWORD_VPS = fileContent
+                        echo "Dynamic environment variable as PASSWORD_VPS set to : ${env.PASSWORD_VPS}"
+                    } else {
+                        echo "File did not exist!"
+                    }
                 }
             }
         }
