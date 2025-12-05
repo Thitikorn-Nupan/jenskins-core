@@ -23,7 +23,8 @@ pipeline {
             steps {
                 script {
                     // Read the content of the file
-                    def fileContent = readFile(file: 'B:/txt/password_vps.txt').trim()
+                    // Keep this format
+                    def fileContent = readFile(file: 'B:\\txt\\password_vps.txt').trim()
                     // Store the content in an environment variable
                     env.PASSWORD_VPS = fileContent
                     echo "Environment variable MY_ENV_VAR set to: ${env.PASSWORD_VPS}"
