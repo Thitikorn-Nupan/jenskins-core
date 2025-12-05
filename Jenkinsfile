@@ -147,6 +147,7 @@ pipeline {
                 // sh "plink.exe -no-antispoof -pw  ${env.PASSWORD_VPS} -ssh root@45.154.26.50 ${env.UBUNTU_CLEAR_DIR}"
                 // sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 // bat "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
+                sh "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
                 echo '******************************'
 //                 withCredentials([usernamePassword(credentialsId: 'ttknp_ssh', usernameVariable: 'ttknp_ssh', passwordVariable: '12345')]) {
 //                     sh "pscp -pw ${env.PASSWORD_VPS} Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
@@ -175,7 +176,6 @@ pipeline {
          success {
              // Send success notification
              echo 'Pipeline completed successfully.'
-             bat "pscp -pw ${env.PASSWORD_VPS} -r Jenkinsfile root@45.154.26.50:/var/www/thitikorn-nupan/app/testing/"
 
          }
          failure {
