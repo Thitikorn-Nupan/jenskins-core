@@ -7,6 +7,7 @@ pipeline {
         docker คือ ใช้ docker executor มา run stages ทั้งหมดนี้
     */
     agent any
+
     // declare env as var for using on stages { ... }
     environment {
             // you have to call tru env.<var name> ex, env.DOMAIN
@@ -15,6 +16,7 @@ pipeline {
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
             PASSWORD_VPS = ''
     }
+
 
     // stages work as working flow it tells Pipeline what gonna do
     stages {
@@ -31,6 +33,7 @@ pipeline {
                 }
             }
         }
+
 
         // step 1
         stage('Before init reads the environment') {
