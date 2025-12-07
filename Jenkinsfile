@@ -28,8 +28,8 @@ pipeline {
                steps {
                    script {
                        def props = readProperties file: 'info.properties'
-                       env.DB_USERNAME = props.username
-                       env.DB_PASSWORD = props.password
+                       env.DB_USERNAME = props['db.username']
+                       env.DB_PASSWORD = props['db.password']
                        echo "Dynamic environment variable as DB_USERNAME set to : ${env.DB_USERNAME}"
                        echo "Dynamic environment variable as DB_PASSWORD set to : ${env.DB_PASSWORD}"
                    }
