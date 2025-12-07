@@ -24,6 +24,19 @@ pipeline {
     // stages work as working flow it tells Pipeline what gonna do
     stages {
         // step 0
+        stage('Before init get key from properties file') {
+               steps {
+                   script {
+                       def props = readProperties file: 'info.properties'
+                       env.DB_USERNAME = db.username
+                       env.DB_PASSWORD = db.password
+                       echo "Dynamic environment variable as DB_USERNAME set to : ${env.DB_USERNAME}"
+                       echo "Dynamic environment variable as DB_PASSWORD set to : ${env.DB_PASSWORD}"
+                   }
+               }
+        }
+
+        // step 0
         stage('Before init get key from file') {
             steps {
                 script {
@@ -52,6 +65,8 @@ pipeline {
                 echo "PATH_APP_ECOMMERCE : ${env.PATH_APP_ECOMMERCE}"
                 echo "PATH_APP_REVIEWS_BOOK : ${env.PATH_APP_REVIEWS_BOOK}"
                 echo "PASSWORD_VPS : ${env.PASSWORD_VPS}"
+                echo "DB_USERNAME : ${env.DB_USERNAME}"
+                echo "DB_PASSWORD : ${env.DB_PASSWORD}"
                 echo '******************************'
             }
 
