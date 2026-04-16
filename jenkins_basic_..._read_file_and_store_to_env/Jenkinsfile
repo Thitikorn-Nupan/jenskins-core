@@ -117,8 +117,7 @@ pipeline {
             }
         }
 
-        // step 5
-        stage('Build') {
+        stage('Build') {  // step 5
             steps {
                 echo '******************************'
                 sh 'pwd'
