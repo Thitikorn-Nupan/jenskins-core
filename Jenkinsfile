@@ -124,25 +124,24 @@ pipeline { // the first start with pipeline { ** set up agent and stages inside 
             }
         }
 
-        // step 5
-        // stage('Build') {
-        //     steps {
-        //         echo '******************************'
-        //         sh 'pwd'
-        //         // Go to target dir
-        //         dir('jenkins_basic_env_linux_groovy') {
-        //             sh "ls -l"
-        //             sh "cat Jenkinsfile"
-        //         }
-        //         // Returns to the original working directory
-        //         sh 'pwd'
-        //     }
-        //     post {
-        //         success { // success: Steps execute only if the Pipeline or stage completes successfully.
-        //             echo 'Build passed successfully!'
-        //         }
-        //     }
-        // }
+        stage('Build') { // step 5
+            steps {
+                echo '******************************'
+                sh 'pwd'
+                // Go to target dir
+                dir('jenkins_basic_env_linux_groovy') {
+                    sh "ls -l"
+                    sh "cat Jenkinsfile"
+                }
+                // Returns to the original working directory
+                sh 'pwd'
+            }
+            post {
+                success { // success: Steps execute only if the Pipeline or stage completes successfully.
+                    echo 'Build passed successfully!'
+                }
+            }
+        }
 
         // step 6
         stage('Deploy') {
