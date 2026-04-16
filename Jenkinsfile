@@ -1,5 +1,4 @@
-// the first start with pipeline { set up agent and stages inside pipeline }
-pipeline {
+pipeline { // the first start with pipeline { ** set up agent and stages inside pipeline }
     /*
         agent เป็นคำสั่งที่เอาไว้บอก Jenkins ว่าจะให้ใช้ executor ตัวใดมา run คำสั่งใน stages ทั้งหมดนี้ ที่ใช้บ่อย ๆ จะเป็น
         none คือ ไม่ใช้ executor ใด ๆ สำหรับ stages ทั้งหมด (ต้องไปกำหนด executor แยกสำหรับแต่ stage เอง)
@@ -8,9 +7,8 @@ pipeline {
     */
     agent any
 
-    // declare env as var for using on stages { ... }
-    environment {
-            // you have to call tru env.<var name> ex, env.DOMAIN
+
+    environment { // declare env as var for using on stages { ... }  , you have to call tru env.<var name> ex, env.DOMAIN
             DOMAIN = 'thitikorn-nupan.com'
             PATH_APP_ECOMMERCE = 'http://www.thitikorn-nupan.com/app/ecommerce/'
             PATH_APP_REVIEWS_BOOK = 'http://www.thitikorn-nupan.com/app/reviews-book/'
@@ -22,10 +20,8 @@ pipeline {
     }
 
 
-    // stages work as working flow it tells Pipeline what gonna do
-    stages {
-        // step 0
-        stage('Before init get key from properties file') {
+    stages { // stages work as flow , it tells Pipeline what gonna do
+        stage('Before init get key from properties file') { // step 1
                steps {
                    script {
                        // def props = readProperties file: 'info.properties' // root path
@@ -38,14 +34,12 @@ pipeline {
                }
         }
 
-        // step 0
-        stage('Before init get key from file') {
+        stage('Before init get key from file') { // step 2
             steps {
                 script {
                     if (fileExists(env.PATH_PASSWORD_VPS)) {
-                        // Read the content of the file Keep this format you can't use / just use \\
-                        // def fileContent = readFile(file: 'B:\\txts\\password_vps.txt').trim()
-                        def fileContent = readFile(file: env.PATH_PASSWORD_VPS).trim()
+                        // Read the content of the file Keep this format ** you can't use "/" just use "\\" instead
+                        def fileContent = readFile(file: env.PATH_PASSWORD_VPS).trim() // def fileContent = readFile(file: 'B:\\txts\\password_vps.txt').trim()
                         // Store the content in an environment variable (Note , should not declare first)
                         env.PASSWORD_VPS = fileContent
                         echo "Dynamic environment variable as PASSWORD_VPS set to : ${env.PASSWORD_VPS}"
@@ -57,9 +51,7 @@ pipeline {
             }
         }
 
-
-        // step 1
-        stage('Before init reads the environment') {
+        stage('Before init reads the environment') { // step 3
             steps {
                 echo '******************************'
                 // Note call env you have to use " " not ' '
@@ -74,52 +66,47 @@ pipeline {
 
         }
 
+        stage('Before init write some groovy language') {  // step 4
+            steps {
+                /*
+                    เราสามารถเขียน Pipeline Logic ที่ซับซ้อนด้วยภาษา Groovy ได้ โดยการใช้ script block
+                    โดยการ กำหนด script { ... } ไว้ใน steps { ... }
+                */
+                echo '******************************'
+                script {
+                      def numbers = [10, 20, 30, 40, 50];
+                      def sum = 0;
+                      for(int index = 0; index < numbers.size(); index++) {
+                         println("value of item : " + numbers[index] );
+                         sum += numbers[index]
+                      }
+                      println("sum of item : " + sum );
+                }
+                echo '******************************'
+            }
 
-        // step 2
-        // stage('Before init write some groovy language') {
-        //     steps {
-        //         /*
-        //             เราสามารถเขียน Pipeline Logic ที่ซับซ้อนด้วยภาษา Groovy ได้ โดยการใช้ script block
-        //             โดยการ กำหนด script { ... } ไว้ใน steps { ... }
-        //         */
-        //         echo '******************************'
-        //         script {
-        //               def numbers = [10, 20, 30, 40, 50];
-        //               def sum = 0;
-        //               for(int index = 0; index < numbers.size(); index++) {
-        //                  println("value of item : " + numbers[index] );
-        //                  sum += numbers[index]
-        //               }
-        //               println("sum of item : " + sum );
-        //         }
-        //         echo '******************************'
-        //     }
-        //
-        // }
+        }
 
-        // step 3
-        // stage('Before init check software installed') {
-        //     steps {
-        //           // Note , you do on local that meaning all software you version you have installed !!
-        //           // sh เป็นคำสั่งที่ใช้ในการ run Linux Command เช่น
-        //           echo '******************************'
-        //           sh 'java -version'
-        //           sh 'mvn -version'
-        //           sh 'git --version'
-        //           sh 'node --version'
-        //           sh 'nvm --version'
-        //           echo '******************************'
-        //     }
-        //     post {
-        //         success {
-        //            echo 'showed version software installed'
-        //         }
-        //     }
-        // }
+        stage('Before init check software installed') { // step 3
+            steps {
+                  // Note , you do on local that meaning all software you version you have installed !!
+                  // sh เป็นคำสั่งที่ใช้ในการ run Linux Command เช่น
+                  echo '******************************'
+                  sh 'java -version'
+                  sh 'mvn -version'
+                  sh 'git --version'
+                  sh 'node --version'
+                  sh 'nvm --version'
+                  echo '******************************'
+            }
+            post {
+                success {
+                   echo 'showed version software installed'
+                }
+            }
+        }
 
-
-        // step 4
-        stage('Init') {
+        stage('Init') {  // step 4
             steps {
                 echo '******************************'
             }
@@ -195,7 +182,6 @@ pipeline {
          success {
              // Send success notification
              echo 'Pipeline completed successfully.'
-
          }
          failure {
              // Send failure notification
